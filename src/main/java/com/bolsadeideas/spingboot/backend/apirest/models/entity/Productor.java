@@ -1,10 +1,11 @@
 package com.bolsadeideas.spingboot.backend.apirest.models.entity;
 
 import java.io.Serializable;
-
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +27,9 @@ public class Productor implements Serializable {
 	private String correo_productor;
 	private String contrasenia_productor;
 	private String usuario_productor;
+	
+	@OneToMany(mappedBy ="productor")
+	private List<Oferta> oferta;
 	
 	public Long getCedula_productor() {
 		return cedula_productor;
@@ -69,6 +73,7 @@ public class Productor implements Serializable {
 	public void setUsuario_productor(String usuario_productor) {
 		this.usuario_productor = usuario_productor;
 	}
+
 	
 	
 

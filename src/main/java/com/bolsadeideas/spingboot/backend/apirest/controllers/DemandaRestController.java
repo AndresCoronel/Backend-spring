@@ -38,6 +38,7 @@ public class DemandaRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Demanda create(@RequestBody Demanda demanda) {
 		return demandaService.save(demanda);
+		
 	}
 	
 	@PutMapping("/demandas/{id_demanda}")
@@ -47,7 +48,11 @@ public class DemandaRestController {
 		
 		demandaActual.setNombre_producto(demanda.getNombre_producto());
 		demandaActual.setCantidad_producto(demanda.getCantidad_producto());
-		demandaActual.setUbicacion_producto(demanda.getUbicacion_producto());
+		demandaActual.setMedida_producto(demanda.getMedida_producto());
+		demandaActual.setDepartamento_demanda(demanda.getDepartamento_demanda());
+		demandaActual.setCiudad_demanda(demanda.getCiudad_demanda());
+		demandaActual.setDescripcion_demanda(demanda.getDescripcion_demanda());
+		
 		demandaActual.setConsumidor(demanda.getConsumidor());
 		
 		

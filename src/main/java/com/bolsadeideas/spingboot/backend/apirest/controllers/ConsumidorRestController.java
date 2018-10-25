@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Consumidor;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IConsumidorService;
+import com.bolsadeideas.spingboot.backend.apirest.models.services.IDemandaService;
 
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -26,6 +27,9 @@ public class ConsumidorRestController {
 	
 	@Autowired
 	private IConsumidorService consumidorService;
+	
+	@Autowired
+	private IDemandaService demandaService;
 	
 	@GetMapping("/consumidores")
 	public List<Consumidor> index(){
