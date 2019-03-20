@@ -1,30 +1,15 @@
-package com.bolsadeideas.spingboot.backend.apirest.models.entity;
+package com.bolsadeideas.spingboot.backend.apirest.models.pojos;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name= "oferta")
-public class Oferta implements Serializable {
-
-
-	@Id
-	@GeneratedValue( strategy= GenerationType.IDENTITY )
-	private Long id_oferta;
+public class OfertaPojo {
 	
-	@Column
+	private Long id_oferta;
 	private String nombre_producto;
 	private String unidad_medida_producto;
 	private int cantidad_producto;
@@ -35,11 +20,7 @@ public class Oferta implements Serializable {
 	private Double longitud_oferta;
 	private String lugar_oferta;
 	private String estado_oferta;
-	private String fecha_recoleccion_oferta;
-	
-	@ManyToOne
-	@JoinColumn(name="cedula_productor")
-	private Productor productor;
+	private Long productor;
 	
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)
@@ -49,8 +30,11 @@ public class Oferta implements Serializable {
 	public void prePersist() {
 		create_at = new Date();
 	}
-	
-	
+
+	public OfertaPojo() {
+		super();
+	}
+
 	public Long getId_oferta() {
 		return id_oferta;
 	}
@@ -67,6 +51,13 @@ public class Oferta implements Serializable {
 		this.nombre_producto = nombre_producto;
 	}
 
+	public String getUnidad_medida_producto() {
+		return unidad_medida_producto;
+	}
+
+	public void setUnidad_medida_producto(String unidad_medida_producto) {
+		this.unidad_medida_producto = unidad_medida_producto;
+	}
 
 	public int getCantidad_producto() {
 		return cantidad_producto;
@@ -100,38 +91,6 @@ public class Oferta implements Serializable {
 		this.descripcion_producto = descripcion_producto;
 	}
 
-	public String getLugar_oferta() {
-		return lugar_oferta;
-	}
-
-	public void setLugar_oferta(String lugar_oferta) {
-		this.lugar_oferta = lugar_oferta;
-	}
-
-	public String getEstado_oferta() {
-		return estado_oferta;
-	}
-
-	public void setEstado_oferta(String estado_oferta) {
-		this.estado_oferta = estado_oferta;
-	}
-
-	public String getUnidad_medida_producto() {
-		return unidad_medida_producto;
-	}
-
-	public void setUnidad_medida_producto(String unidad_medida_producto) {
-		this.unidad_medida_producto = unidad_medida_producto;
-	}
-
-	public String getFecha_recoleccion_oferta() {
-		return fecha_recoleccion_oferta;
-	}
-
-	public void setFecha_recoleccion_oferta(String fecha_recoleccion_oferta) {
-		this.fecha_recoleccion_oferta = fecha_recoleccion_oferta;
-	}
-
 	public Double getLatitud_oferta() {
 		return latitud_oferta;
 	}
@@ -148,32 +107,41 @@ public class Oferta implements Serializable {
 		this.longitud_oferta = longitud_oferta;
 	}
 
-	public Productor getProductor() {
-		return productor;
+	public String getLugar_oferta() {
+		return lugar_oferta;
 	}
 
-	public void setProductor(Productor productor) {
-		this.productor = productor;
+	public void setLugar_oferta(String lugar_oferta) {
+		this.lugar_oferta = lugar_oferta;
 	}
-	
-	
-	
+
+	public String getEstado_oferta() {
+		return estado_oferta;
+	}
+
+	public void setEstado_oferta(String estado_oferta) {
+		this.estado_oferta = estado_oferta;
+	}
+
 	public Date getCreate_at() {
 		return create_at;
 	}
-
 
 	public void setCreate_at(Date create_at) {
 		this.create_at = create_at;
 	}
 
+	public Long getProductor() {
+		return productor;
+	}
 
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	public void setProductor(Long productor) {
+		this.productor = productor;
+	}
 	
 	
-
+	
+	
+	
+	
 }

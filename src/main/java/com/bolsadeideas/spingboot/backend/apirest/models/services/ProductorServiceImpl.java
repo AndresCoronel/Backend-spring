@@ -39,4 +39,6 @@ public class ProductorServiceImpl implements IProductorService  {
 		productorDao.deleteById(cedula_productor);
 		
 	}
+	
+	
 }

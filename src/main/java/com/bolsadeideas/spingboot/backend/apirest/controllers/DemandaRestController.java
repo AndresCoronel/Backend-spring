@@ -1,5 +1,6 @@
 package com.bolsadeideas.spingboot.backend.apirest.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Consumidor;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Demanda;
+import com.bolsadeideas.spingboot.backend.apirest.models.pojos.DemandaPojo;
+import com.bolsadeideas.spingboot.backend.apirest.models.services.IConsumidorService;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IDemandaService;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -25,7 +29,8 @@ public class DemandaRestController {
 	
 	@Autowired
 	private IDemandaService demandaService;
-	
+	@Autowired
+	private IConsumidorService consumidorService;
 	@GetMapping("/demandas")
 	public List<Demanda> index(){
 		return demandaService.findAll();
@@ -36,7 +41,22 @@ public class DemandaRestController {
 	}
 	@PostMapping("/demandas")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Demanda create(@RequestBody Demanda demanda) {
+	public Demanda create(@RequestBody DemandaPojo demandaPojo) {
+	Demanda demanda = new Demanda();
+	System.out.println(demandaPojo.getCiudad_demanda());
+	
+	Consumidor consumidor = this.consumidorService.findByCedulaConsumidor(demandaPojo.getConsumidor());
+	System.out.println(consumidor.getNombre_consumidor());
+	
+		demanda.setCreate_at(new Date());
+		demanda.setNombre_producto(demandaPojo.getNombre_producto());
+		demanda.setCantidad_producto(demandaPojo.getCantidad_producto());
+		demanda.setMedida_producto(demandaPojo.getMedida_producto());
+		demanda.setDepartamento_demanda(demandaPojo.getDepartamento_demanda());
+		demanda.setCiudad_demanda(demandaPojo.getCiudad_demanda());
+		demanda.setDescripcion_demanda(demandaPojo.getDescripcion_demanda());
+		demanda.setConsumidor(consumidor);
+		
 		return demandaService.save(demanda);
 		
 	}

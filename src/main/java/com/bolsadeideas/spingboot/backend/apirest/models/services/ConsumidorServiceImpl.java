@@ -1,7 +1,5 @@
 package com.bolsadeideas.spingboot.backend.apirest.models.services;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bolsadeideas.spingboot.backend.apirest.models.dao.IConsumidorDao;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Consumidor;
 
-
-
 @Service
-public class ConsumidorServiceImpl implements IConsumidorService {
-
+public class ConsumidorServiceImpl implements IConsumidorService{
+	
 	@Autowired
 	private IConsumidorDao consumidorDao;
 
@@ -25,6 +21,12 @@ public class ConsumidorServiceImpl implements IConsumidorService {
 		return (List<Consumidor>) consumidorDao.findAll();
 		
 	}
+//	public Consumidor find(String usuario_consumidor) {
+//		return consumidorDao.findOneByUsername(usuario_consumidor);
+//	}
+	
+	
+
 	@Override
 	@Transactional(readOnly=true)
 	public Consumidor findByCedulaConsumidor(Long cedula_consumidor) {

@@ -21,7 +21,7 @@ public class Consumidor implements Serializable {
 	private Long telefono_consumidor;
 	private String correo_consumidor;
 	private String contrasenia_consumidor;
-	private String usuario_consumidor;
+	private String username;
 	
 	@OneToMany(mappedBy ="consumidor")
 	private List<Demanda> demanda;
@@ -74,12 +74,12 @@ public class Consumidor implements Serializable {
 		this.contrasenia_consumidor = contrasenia_consumidor;
 	}
 
-	public String getUsuario_consumidor() {
-		return usuario_consumidor;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUsuario_consumidor(String usuario_consumidor) {
-		this.usuario_consumidor = usuario_consumidor;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	

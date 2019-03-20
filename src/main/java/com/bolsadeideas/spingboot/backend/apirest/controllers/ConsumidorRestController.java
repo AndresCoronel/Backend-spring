@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bolsadeideas.spingboot.backend.apirest.models.dao.IConsumidorDao;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Consumidor;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IConsumidorService;
-import com.bolsadeideas.spingboot.backend.apirest.models.services.IDemandaService;
+
 
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -27,9 +28,8 @@ public class ConsumidorRestController {
 	
 	@Autowired
 	private IConsumidorService consumidorService;
-	
 	@Autowired
-	private IDemandaService demandaService;
+	private IConsumidorDao consumidorDao;
 	
 	@GetMapping("/consumidores")
 	public List<Consumidor> index(){
@@ -55,7 +55,7 @@ public class ConsumidorRestController {
 		consumidorActual.setTelefono_consumidor(consumidor.getTelefono_consumidor());
 		consumidorActual.setCorreo_consumidor(consumidor.getCorreo_consumidor());
 		consumidorActual.setContrasenia_consumidor(consumidor.getContrasenia_consumidor());
-		consumidorActual.setUsuario_consumidor(consumidor.getUsuario_consumidor());
+		consumidorActual.setUsername(consumidor.getUsername());
 		
 		return consumidorService.save(consumidorActual);
 		
@@ -65,6 +65,12 @@ public class ConsumidorRestController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete (@PathVariable Long cedula_consumidor) {
 		consumidorService.delete(cedula_consumidor);
+	}
+	
+	@GetMapping("/consumidores/{username}")
+	public Consumidor getUsuario(@PathVariable String username) {
+		System.out.println("perro");
+		return consumidorDao.findByUsername(username);
 	}
 	
 	

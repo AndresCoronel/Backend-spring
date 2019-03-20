@@ -5,8 +5,9 @@ import java.util.List;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Consumidor;
 
 
-public interface IConsumidorService  {
 
+public interface IConsumidorService{
+	
 	public List<Consumidor>findAll();
 	
 	public Consumidor findByCedulaConsumidor(Long cedula_consumidor);
@@ -14,4 +15,9 @@ public interface IConsumidorService  {
 	public Consumidor save(Consumidor consumidor);
 	
 	public void delete(Long cedula_consumidor);
+	
+
+
 }
+
+
