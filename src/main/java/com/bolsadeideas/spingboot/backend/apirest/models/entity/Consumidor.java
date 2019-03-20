@@ -25,6 +25,9 @@ public class Consumidor implements Serializable {
 	
 	@OneToMany(mappedBy ="consumidor")
 	private List<Demanda> demanda;
+	
+	@OneToMany(mappedBy ="consumidor")
+	private List<Testimonio> testimonio;
 
 	public Long getCedula_consumidor() {
 		return cedula_consumidor;

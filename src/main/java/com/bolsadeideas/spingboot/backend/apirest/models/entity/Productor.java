@@ -31,6 +31,9 @@ public class Productor implements Serializable {
 	@OneToMany(mappedBy ="productor")
 	private List<Oferta> oferta;
 	
+	@OneToMany(mappedBy ="productor")
+	private List<Testimonio> testimonio;
+	
 	public Long getCedula_productor() {
 		return cedula_productor;
 	}
