@@ -1,18 +1,24 @@
 package com.bolsadeideas.spingboot.backend.apirest.models.pojos;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Foto;
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Productor;
+
 public class OfertaPojo {
 	
 	private Long id_oferta;
-	private String nombre_producto;
+	private String nombreproducto;
 	private String unidad_medida_producto;
-	private int cantidad_producto;
+	private int cantidadproducto;
 	private int precio_producto;
 	private String variedad_producto;
 	private String descripcion_producto;
@@ -21,6 +27,10 @@ public class OfertaPojo {
 	private String lugar_oferta;
 	private String estado_oferta;
 	private Long productor;
+	private String fecha_recoleccion_oferta;
+	private String ciudad_oferta;
+	private String departamento_oferta;
+	private List<Foto> fotos ;
 	
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)
@@ -34,6 +44,15 @@ public class OfertaPojo {
 	public OfertaPojo() {
 		super();
 	}
+	
+
+	public List<Foto> getFotos() {
+		return fotos;
+	}
+
+	public void setFotos(List<Foto> fotos) {
+		this.fotos = fotos;
+	}
 
 	public Long getId_oferta() {
 		return id_oferta;
@@ -43,12 +62,12 @@ public class OfertaPojo {
 		this.id_oferta = id_oferta;
 	}
 
-	public String getNombre_producto() {
-		return nombre_producto;
+	public String getNombreproducto() {
+		return nombreproducto;
 	}
 
-	public void setNombre_producto(String nombre_producto) {
-		this.nombre_producto = nombre_producto;
+	public void setNombreproducto(String nombreproducto) {
+		this.nombreproducto = nombreproducto;
 	}
 
 	public String getUnidad_medida_producto() {
@@ -58,13 +77,12 @@ public class OfertaPojo {
 	public void setUnidad_medida_producto(String unidad_medida_producto) {
 		this.unidad_medida_producto = unidad_medida_producto;
 	}
-
-	public int getCantidad_producto() {
-		return cantidad_producto;
+	public int getCantidadproducto() {
+		return cantidadproducto;
 	}
 
-	public void setCantidad_producto(int cantidad_producto) {
-		this.cantidad_producto = cantidad_producto;
+	public void setCantidadproducto(int cantidadproducto) {
+		this.cantidadproducto = cantidadproducto;
 	}
 
 	public int getPrecio_producto() {
@@ -138,6 +156,31 @@ public class OfertaPojo {
 	public void setProductor(Long productor) {
 		this.productor = productor;
 	}
+
+	public String getFecha_recoleccion_oferta() {
+		return fecha_recoleccion_oferta;
+	}
+
+	public void setFecha_recoleccion_oferta(String fecha_recoleccion_oferta) {
+		this.fecha_recoleccion_oferta = fecha_recoleccion_oferta;
+	}
+
+	public String getCiudad_oferta() {
+		return ciudad_oferta;
+	}
+
+	public void setCiudad_oferta(String ciudad_oferta) {
+		this.ciudad_oferta = ciudad_oferta;
+	}
+
+	public String getDepartamento_oferta() {
+		return departamento_oferta;
+	}
+
+	public void setDepartamento_oferta(String departamento_oferta) {
+		this.departamento_oferta = departamento_oferta;
+	}
+	
 	
 	
 	

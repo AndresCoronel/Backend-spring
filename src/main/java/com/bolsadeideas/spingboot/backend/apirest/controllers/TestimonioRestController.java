@@ -53,13 +53,10 @@ public class TestimonioRestController {
 	public Testimonio create(@RequestBody TestimonioPojo testimonioPojo) {
 		
 		Testimonio testimonio = new Testimonio();
-		Productor productor = this.productorService.findByCedulaProductor(testimonioPojo.getProductor());
-		Consumidor consumidor = this.consumidorService.findByCedulaConsumidor(testimonioPojo.getConsumidor());
-		
 		testimonio.setCreate_at(new Date());
 		testimonio.setDescripcion_testimonio(testimonioPojo.getDescripcion_testimonio());
-		testimonio.setProductor(productor);
-		testimonio.setConsumidor(consumidor);
+		testimonio.setNombre_persona(testimonioPojo.getNombre_persona());
+		testimonio.setCiudad_persona(testimonioPojo.getCiudad_persona());
 	
 		
 		return testimonioService.save(testimonio);
@@ -70,8 +67,8 @@ public class TestimonioRestController {
 		Testimonio testimonioActual = testimonioService.findByIdTestimonio(id_testimonio);
 		
 		testimonioActual.setDescripcion_testimonio(testimonio.getDescripcion_testimonio());
-		testimonioActual.setProductor(testimonio.getProductor());
-		testimonioActual.setConsumidor(testimonio.getConsumidor());
+		testimonioActual.setNombre_persona(testimonio.getNombre_persona());
+		testimonioActual.setCiudad_persona(testimonio.getCiudad_persona());
 		
 		return testimonioService.save(testimonioActual);
 		

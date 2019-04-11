@@ -49,6 +49,7 @@ public class ProductorRestController {
 
 		productorActual.setNombre_productor(productor.getNombre_productor());
 		productorActual.setApellido_productor(productor.getApellido_productor());
+		productorActual.setSexo_productor(productor.getSexo_productor());
 		productorActual.setTelefono_productor(productor.getTelefono_productor());
 		productorActual.setCorreo_productor(productor.getCorreo_productor());
 		productorActual.setContrasenia_productor(productor.getContrasenia_productor());

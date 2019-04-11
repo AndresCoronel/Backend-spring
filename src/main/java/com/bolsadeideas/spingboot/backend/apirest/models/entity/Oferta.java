@@ -2,6 +2,7 @@ package com.bolsadeideas.spingboot.backend.apirest.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,6 +21,11 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name= "oferta")
+@NamedQueries({
+@NamedQuery(name="Oferta.buscarIguales", query="from Oferta where nombreproducto=? And cantidadproducto=? AND unidad_medida_producto=?"),
+@NamedQuery(name="Oferta.buscarMenores", query="from Oferta where nombreproducto=? And cantidadproducto<? AND unidad_medida_producto=?")
+
+})
 public class Oferta implements Serializable {
 
 
@@ -25,9 +34,9 @@ public class Oferta implements Serializable {
 	private Long id_oferta;
 	
 	@Column
-	private String nombre_producto;
+	private String nombreproducto;
 	private String unidad_medida_producto;
-	private int cantidad_producto;
+	private int cantidadproducto;
 	private int precio_producto;
 	private String variedad_producto;
 	private String descripcion_producto;
@@ -36,10 +45,17 @@ public class Oferta implements Serializable {
 	private String lugar_oferta;
 	private String estado_oferta;
 	private String fecha_recoleccion_oferta;
+
+	private String ciudad_oferta;
+	private String departamento_oferta;
 	
 	@ManyToOne
 	@JoinColumn(name="cedula_productor")
 	private Productor productor;
+	
+	@OneToMany(mappedBy ="oferta")
+	private List<Foto> fotos;
+	
 	
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)
@@ -58,22 +74,43 @@ public class Oferta implements Serializable {
 	public void setId_oferta(Long id_oferta) {
 		this.id_oferta = id_oferta;
 	}
+	
 
-	public String getNombre_producto() {
-		return nombre_producto;
-	}
-
-	public void setNombre_producto(String nombre_producto) {
-		this.nombre_producto = nombre_producto;
+	public String getCiudad_oferta() {
+		return ciudad_oferta;
 	}
 
 
-	public int getCantidad_producto() {
-		return cantidad_producto;
+	public void setCiudad_oferta(String ciudad_oferta) {
+		this.ciudad_oferta = ciudad_oferta;
 	}
 
-	public void setCantidad_producto(int cantidad_producto) {
-		this.cantidad_producto = cantidad_producto;
+
+	public String getDepartamento_oferta() {
+		return departamento_oferta;
+	}
+
+
+	public void setDepartamento_oferta(String departamento_oferta) {
+		this.departamento_oferta = departamento_oferta;
+	}
+
+
+	public String getNombreproducto() {
+		return nombreproducto;
+	}
+
+	public void setNombreproducto(String nombreproducto) {
+		this.nombreproducto = nombreproducto;
+	}
+
+
+	public int getCantidadproducto() {
+		return cantidadproducto;
+	}
+
+	public void setCantidadproducto(int cantidadproducto) {
+		this.cantidadproducto = cantidadproducto;
 	}
 
 	public int getPrecio_producto() {
@@ -156,8 +193,16 @@ public class Oferta implements Serializable {
 		this.productor = productor;
 	}
 	
-	
-	
+	public List<Foto> getFotos() {
+		return fotos;
+	}
+
+
+	public void setFotos(List<Foto> fotos) {
+		this.fotos = fotos;
+	}
+
+
 	public Date getCreate_at() {
 		return create_at;
 	}

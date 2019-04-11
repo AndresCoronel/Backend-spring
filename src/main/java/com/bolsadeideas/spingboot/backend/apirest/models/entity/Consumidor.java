@@ -21,13 +21,11 @@ public class Consumidor implements Serializable {
 	private Long telefono_consumidor;
 	private String correo_consumidor;
 	private String contrasenia_consumidor;
-	private String username;
+	private String sexo_consumidor;
+	
 	
 	@OneToMany(mappedBy ="consumidor")
 	private List<Demanda> demanda;
-	
-	@OneToMany(mappedBy ="consumidor")
-	private List<Testimonio> testimonio;
 
 	public Long getCedula_consumidor() {
 		return cedula_consumidor;
@@ -77,15 +75,17 @@ public class Consumidor implements Serializable {
 		this.contrasenia_consumidor = contrasenia_consumidor;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 	
+	public String getSexo_consumidor() {
+		return sexo_consumidor;
+	}
+
+	public void setSexo_consumidor(String sexo_consumidor) {
+		this.sexo_consumidor = sexo_consumidor;
+	}
+
+
+
 	/**
 	 * 
 	 */

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bolsadeideas.spingboot.backend.apirest.models.dao.IDemandaDao;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Demanda;
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Oferta;
 
 @Service
 public class DemandaServiceImpl implements IDemandaService {
@@ -39,6 +40,14 @@ public class DemandaServiceImpl implements IDemandaService {
 	public void delete(Long id_demanda) {
 		// TODO Auto-generated method stub
 		demandaDao.deleteById(id_demanda);
+		
+	}
+	
+	/*Demandas por cantidad de producto*/
+	@Override
+	@Transactional(readOnly=true)
+	public List<Demanda> findByCantidadproducto(int cantidadproducto){
+		return demandaDao.findByCantidadproducto(cantidadproducto);
 		
 	}
 }

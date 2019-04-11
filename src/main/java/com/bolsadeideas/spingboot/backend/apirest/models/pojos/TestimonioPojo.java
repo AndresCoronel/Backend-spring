@@ -11,8 +11,9 @@ public class TestimonioPojo {
 
 	private Long id_testimonio;
 	private String descripcion_testimonio;
-	private Long productor;
-	private Long consumidor;
+	private String nombre_persona;
+	private String ciudad_persona;
+
 	
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)
@@ -39,20 +40,22 @@ public class TestimonioPojo {
 		this.descripcion_testimonio = descripcion_testimonio;
 	}
 
-	public Long getProductor() {
-		return productor;
+	
+
+	public String getNombre_persona() {
+		return nombre_persona;
 	}
 
-	public void setProductor(Long productor) {
-		this.productor = productor;
+	public void setNombre_persona(String nombre_persona) {
+		this.nombre_persona = nombre_persona;
 	}
 
-	public Long getConsumidor() {
-		return consumidor;
+	public String getCiudad_persona() {
+		return ciudad_persona;
 	}
 
-	public void setConsumidor(Long consumidor) {
-		this.consumidor = consumidor;
+	public void setCiudad_persona(String ciudad_persona) {
+		this.ciudad_persona = ciudad_persona;
 	}
 
 	public Date getCreate_at() {

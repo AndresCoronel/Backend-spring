@@ -52,10 +52,10 @@ public class ConsumidorRestController {
 		
 		consumidorActual.setNombre_consumidor(consumidor.getNombre_consumidor());
 		consumidorActual.setApellido_consumidor(consumidor.getApellido_consumidor());
+		consumidorActual.setSexo_consumidor(consumidor.getSexo_consumidor());
 		consumidorActual.setTelefono_consumidor(consumidor.getTelefono_consumidor());
 		consumidorActual.setCorreo_consumidor(consumidor.getCorreo_consumidor());
 		consumidorActual.setContrasenia_consumidor(consumidor.getContrasenia_consumidor());
-		consumidorActual.setUsername(consumidor.getUsername());
 		
 		return consumidorService.save(consumidorActual);
 		

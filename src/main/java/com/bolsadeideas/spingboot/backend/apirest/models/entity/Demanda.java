@@ -24,11 +24,14 @@ public class Demanda implements Serializable {
 	
 	@Column
 	private String nombre_producto;
-	private Long cantidad_producto;
+	private int cantidad_producto;
 	private String medida_producto;
 	private String departamento_demanda;
 	private String ciudad_demanda;
 	private String descripcion_demanda;
+	private String estado_demanda;
+	private String variedad_producto;
+	private String direccion_demanda;
 	
 	
 	@ManyToOne
@@ -55,30 +58,45 @@ public class Demanda implements Serializable {
 	}
 
 
-
 	public String getNombre_producto() {
 		return nombre_producto;
 	}
-
-
 
 	public void setNombre_producto(String nombre_producto) {
 		this.nombre_producto = nombre_producto;
 	}
 
-
-
-	public Long getCantidad_producto() {
+	public int getCantidad_producto() {
 		return cantidad_producto;
 	}
 
-
-
-	public void setCantidad_producto(Long cantidad_producto) {
+	public void setCantidad_producto(int cantidad_producto) {
 		this.cantidad_producto = cantidad_producto;
 	}
 
+	public String getEstado_demanda() {
+		return estado_demanda;
+	}
 
+	public void setEstado_demanda(String estado_demanda) {
+		this.estado_demanda = estado_demanda;
+	}
+
+	public String getVariedad_producto() {
+		return variedad_producto;
+	}
+
+	public void setVariedad_producto(String variedad_producto) {
+		this.variedad_producto = variedad_producto;
+	}
+
+	public String getDireccion_demanda() {
+		return direccion_demanda;
+	}
+
+	public void setDireccion_demanda(String direccion_demanda) {
+		this.direccion_demanda = direccion_demanda;
+	}
 
 	public String getMedida_producto() {
 		return medida_producto;

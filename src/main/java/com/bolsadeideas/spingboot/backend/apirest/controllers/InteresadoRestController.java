@@ -22,6 +22,7 @@ import com.bolsadeideas.spingboot.backend.apirest.models.entity.Interesado;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Oferta;
 import com.bolsadeideas.spingboot.backend.apirest.models.pojos.DemandaPojo;
 import com.bolsadeideas.spingboot.backend.apirest.models.pojos.InteresadoPojo;
+import com.bolsadeideas.spingboot.backend.apirest.models.pojos.OfertaPojo;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IConsumidorService;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IDemandaService;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IInteresadoService;
@@ -52,11 +53,11 @@ public class InteresadoRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Interesado create(@RequestBody InteresadoPojo interesadoPojo) {
 	Interesado interesado = new Interesado();
-	System.out.println(interesadoPojo.getConsumidor());
 	
-	Consumidor consumidor = this.consumidorService.findByCedulaConsumidor(interesadoPojo.getConsumidor());
+	Consumidor consumidor = this.consumidorService.findByCedulaConsumidor((long) 1);
+	System.out.println("llego el consumidor:"+consumidor);
 	Oferta oferta = this.ofertaService.findByIdOferta(interesadoPojo.getOferta());
-	System.out.println(oferta.getNombre_producto());
+	System.out.println(oferta.getNombreproducto());
 	System.out.println(consumidor.getNombre_consumidor());
 	
 		interesado.setConsumidor(consumidor);

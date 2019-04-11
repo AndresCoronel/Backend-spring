@@ -19,12 +19,15 @@ public class DemandaPojo {
 	private Long id_demanda;
 
 	private String nombre_producto;
-	private Long cantidad_producto;
+	private int cantidad_producto;
 	private String medida_producto;
 	private String departamento_demanda;
 	private String ciudad_demanda;
 	private String descripcion_demanda;
 	private Long consumidor;
+	private String estado_demanda;
+	private String variedad_producto;
+	private String direccion_demanda;
 	
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)
@@ -52,10 +55,10 @@ public class DemandaPojo {
 	public void setNombre_producto(String nombre_producto) {
 		this.nombre_producto = nombre_producto;
 	}
-	public Long getCantidad_producto() {
+	public int getCantidad_producto() {
 		return cantidad_producto;
 	}
-	public void setCantidad_producto(Long cantidad_producto) {
+	public void setCantidadproducto(int cantidad_producto) {
 		this.cantidad_producto = cantidad_producto;
 	}
 	public String getMedida_producto() {
@@ -82,7 +85,32 @@ public class DemandaPojo {
 	public void setDescripcion_demanda(String descripcion_demanda) {
 		this.descripcion_demanda = descripcion_demanda;
 	}
+	
 
+
+	public String getEstado_demanda() {
+		return estado_demanda;
+	}
+
+	public void setEstado_demanda(String estado_demanda) {
+		this.estado_demanda = estado_demanda;
+	}
+
+	public String getVariedad_producto() {
+		return variedad_producto;
+	}
+
+	public void setVariedad_producto(String variedad_producto) {
+		this.variedad_producto = variedad_producto;
+	}
+
+	public String getDireccion_demanda() {
+		return direccion_demanda;
+	}
+
+	public void setDireccion_demanda(String direccion_demanda) {
+		this.direccion_demanda = direccion_demanda;
+	}
 
 	public Long getConsumidor() {
 		return consumidor;

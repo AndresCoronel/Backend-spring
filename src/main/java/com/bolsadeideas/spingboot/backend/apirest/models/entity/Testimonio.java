@@ -25,15 +25,9 @@ public class Testimonio implements Serializable{
 	private Long id_testimonio;
 	
 	private String descripcion_testimonio;
-	
-	@ManyToOne
-	@JoinColumn(name="cedula_productor")
-	private Productor productor;
-	
-	@ManyToOne
-	@JoinColumn(name="cedula_consumidor")
-	private Consumidor consumidor;
-	
+	private String nombre_persona;
+	private String ciudad_persona;
+
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)
 	private Date create_at;
@@ -61,21 +55,31 @@ public class Testimonio implements Serializable{
 		this.descripcion_testimonio = descripcion_testimonio;
 	}
 
-	public Productor getProductor() {
-		return productor;
+	
+
+	public String getNombre_persona() {
+		return nombre_persona;
 	}
 
-	public void setProductor(Productor productor) {
-		this.productor = productor;
+
+
+	public void setNombre_persona(String nombre_persona) {
+		this.nombre_persona = nombre_persona;
 	}
 
-	public Consumidor getConsumidor() {
-		return consumidor;
+
+
+	public String getCiudad_persona() {
+		return ciudad_persona;
 	}
 
-	public void setConsumidor(Consumidor consumidor) {
-		this.consumidor = consumidor;
+
+
+	public void setCiudad_persona(String ciudad_persona) {
+		this.ciudad_persona = ciudad_persona;
 	}
+
+
 
 	public Date getCreate_at() {
 		return create_at;

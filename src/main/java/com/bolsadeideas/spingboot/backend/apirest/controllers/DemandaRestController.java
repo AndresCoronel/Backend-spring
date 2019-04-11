@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Consumidor;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Demanda;
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Oferta;
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Productor;
 import com.bolsadeideas.spingboot.backend.apirest.models.pojos.DemandaPojo;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IConsumidorService;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IDemandaService;
@@ -31,6 +33,7 @@ public class DemandaRestController {
 	private IDemandaService demandaService;
 	@Autowired
 	private IConsumidorService consumidorService;
+	
 	@GetMapping("/demandas")
 	public List<Demanda> index(){
 		return demandaService.findAll();
@@ -55,7 +58,12 @@ public class DemandaRestController {
 		demanda.setDepartamento_demanda(demandaPojo.getDepartamento_demanda());
 		demanda.setCiudad_demanda(demandaPojo.getCiudad_demanda());
 		demanda.setDescripcion_demanda(demandaPojo.getDescripcion_demanda());
+		demanda.setEstado_demanda(demandaPojo.getEstado_demanda());
+		demanda.setVariedad_producto(demandaPojo.getVariedad_producto());
+		demanda.setDireccion_demanda(demandaPojo.getDireccion_demanda());
 		demanda.setConsumidor(consumidor);
+		
+		
 		
 		return demandaService.save(demanda);
 		
@@ -72,6 +80,10 @@ public class DemandaRestController {
 		demandaActual.setDepartamento_demanda(demanda.getDepartamento_demanda());
 		demandaActual.setCiudad_demanda(demanda.getCiudad_demanda());
 		demandaActual.setDescripcion_demanda(demanda.getDescripcion_demanda());
+
+		demandaActual.setEstado_demanda(demanda.getEstado_demanda());
+		demandaActual.setVariedad_producto(demanda.getVariedad_producto());
+		demandaActual.setDireccion_demanda(demanda.getDireccion_demanda());
 		
 		demandaActual.setConsumidor(demanda.getConsumidor());
 		
@@ -85,5 +97,21 @@ public class DemandaRestController {
 	public void delete (@PathVariable Long id_demanda) {
 		demandaService.delete(id_demanda);
 	}
+	
+	@GetMapping("/demandas/oferta/{oferta}")
+	public List<Demanda> mostrarOfertas(@PathVariable Oferta oferta){
+		System.out.println("metodo********************");
+		if(oferta == null) {
+			System.out.println("pailas bebe");
+		}
+		else {
+			System.out.println(oferta.getCantidadproducto());
+			System.out.println(demandaService.findByCantidadproducto(oferta.getCantidadproducto()));
+		}
+		
+		return demandaService.findByCantidadproducto(oferta.getCantidadproducto());
+		
+	}
+	
 
 }
