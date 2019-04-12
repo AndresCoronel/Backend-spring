@@ -43,11 +43,5 @@ public class DemandaServiceImpl implements IDemandaService {
 		
 	}
 	
-	/*Demandas por cantidad de producto*/
-	@Override
-	@Transactional(readOnly=true)
-	public List<Demanda> findByCantidadproducto(int cantidadproducto){
-		return demandaDao.findByCantidadproducto(cantidadproducto);
-		
-	}
+	
 }

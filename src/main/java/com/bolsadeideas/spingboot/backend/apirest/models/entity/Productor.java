@@ -26,7 +26,6 @@ public class Productor implements Serializable {
 	private Long telefono_productor;
 	private String correo_productor;
 	private String contrasenia_productor;
-	private String usuario_productor;
 	private String sexo_productor;
 	
 	@OneToMany(mappedBy ="productor")
@@ -67,12 +66,6 @@ public class Productor implements Serializable {
 	}
 	public void setContrasenia_productor(String contrasenia_productor) {
 		this.contrasenia_productor = contrasenia_productor;
-	}
-	public String getUsuario_productor() {
-		return usuario_productor;
-	}
-	public void setUsuario_productor(String usuario_productor) {
-		this.usuario_productor = usuario_productor;
 	}
 	public String getSexo_productor() {
 		return sexo_productor;

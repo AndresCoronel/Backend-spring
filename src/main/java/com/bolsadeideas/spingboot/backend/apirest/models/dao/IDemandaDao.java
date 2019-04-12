@@ -12,7 +12,6 @@ public interface IDemandaDao extends CrudRepository<Demanda, Long> {
 
 	@SuppressWarnings("unchecked")
 	Demanda save(Demanda demanda);
-	List<Demanda> findByCantidadproducto(int cantidadproducto);
 	
 	
 }

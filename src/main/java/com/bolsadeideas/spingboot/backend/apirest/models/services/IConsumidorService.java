@@ -16,6 +16,7 @@ public interface IConsumidorService{
 	
 	public void delete(Long cedula_consumidor);
 	
+	public Consumidor buscarConsumidorCorreo(String correo_consumidor, String contrasenia_consumidor);
 
 
 }

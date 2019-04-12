@@ -105,11 +105,10 @@ public class DemandaRestController {
 			System.out.println("pailas bebe");
 		}
 		else {
-			System.out.println(oferta.getCantidadproducto());
-			System.out.println(demandaService.findByCantidadproducto(oferta.getCantidadproducto()));
+			System.out.println(oferta.getCantidad_producto());
 		}
 		
-		return demandaService.findByCantidadproducto(oferta.getCantidadproducto());
+		return null;
 		
 	}
 	

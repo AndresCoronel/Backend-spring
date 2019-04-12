@@ -34,6 +34,15 @@ public class ConsumidorServiceImpl implements IConsumidorService{
 		return consumidorDao.findById(cedula_consumidor).orElse(null);
 	}
 	@Override
+	@Transactional(readOnly=true)
+	public Consumidor buscarConsumidorCorreo(String correo_consumidor, String contrasenia_consumidor) {
+		// TODO Auto-generated method stub
+		System.out.println("llego aqiii");
+		Consumidor consumidor = consumidorDao.buscarConsumidorCorreo(correo_consumidor, contrasenia_consumidor);
+		return consumidor;
+	}
+	
+	@Override
 	@Transactional
 	public Consumidor save(Consumidor consumidor) {
 		// TODO Auto-generated method stub

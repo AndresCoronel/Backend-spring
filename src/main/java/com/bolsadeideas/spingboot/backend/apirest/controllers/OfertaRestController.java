@@ -99,9 +99,9 @@ public class OfertaRestController {
 		Productor productor = this.productorService.findByCedulaProductor(ofertaPojo.getProductor());
 
 		oferta.setCreate_at(new Date());
-		oferta.setNombreproducto(ofertaPojo.getNombreproducto());
+		oferta.setNombre_producto(ofertaPojo.getNombre_producto());
 		oferta.setUnidad_medida_producto(ofertaPojo.getUnidad_medida_producto());
-		oferta.setCantidadproducto(ofertaPojo.getCantidadproducto());
+		oferta.setCantidad_producto(ofertaPojo.getCantidad_producto());
 		oferta.setPrecio_producto(ofertaPojo.getPrecio_producto());
 		oferta.setVariedad_producto(ofertaPojo.getVariedad_producto());
 		oferta.setDescripcion_producto(ofertaPojo.getDescripcion_producto());
@@ -113,7 +113,6 @@ public class OfertaRestController {
 		oferta.setDepartamento_oferta(ofertaPojo.getDepartamento_oferta());
 		oferta.setEstado_oferta("PUBLICADA");
 		oferta.setProductor(productor);
-		oferta.setFotos(ofertaPojo.getFotos());
 
 		return ofertaService.save(oferta);
 	}
@@ -122,9 +121,9 @@ public class OfertaRestController {
 	public Oferta update(@RequestBody Oferta oferta, @PathVariable Long id_oferta) {
 		Oferta ofertaActual = ofertaService.findByIdOferta(id_oferta);
 
-		ofertaActual.setNombreproducto(oferta.getNombreproducto());
+		ofertaActual.setNombre_producto(oferta.getNombre_producto());
 		ofertaActual.setUnidad_medida_producto(oferta.getUnidad_medida_producto());
-		ofertaActual.setCantidadproducto(oferta.getCantidadproducto());
+		ofertaActual.setCantidad_producto(oferta.getCantidad_producto());
 		ofertaActual.setPrecio_producto(oferta.getPrecio_producto());
 		ofertaActual.setVariedad_producto(oferta.getVariedad_producto());
 		ofertaActual.setDescripcion_producto(oferta.getVariedad_producto());

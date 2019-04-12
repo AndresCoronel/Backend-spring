@@ -53,7 +53,6 @@ public class ProductorRestController {
 		productorActual.setTelefono_productor(productor.getTelefono_productor());
 		productorActual.setCorreo_productor(productor.getCorreo_productor());
 		productorActual.setContrasenia_productor(productor.getContrasenia_productor());
-		productorActual.setUsuario_productor(productor.getUsuario_productor());
 
 		return productorService.save(productorActual);
 

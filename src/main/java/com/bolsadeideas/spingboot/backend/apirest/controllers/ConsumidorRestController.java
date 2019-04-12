@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bolsadeideas.spingboot.backend.apirest.models.dao.IConsumidorDao;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Consumidor;
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Productor;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IConsumidorService;
 
 
@@ -61,17 +62,31 @@ public class ConsumidorRestController {
 		
 	}
 	
+	@GetMapping("/consumidores/buscar/{correo_consumidor}/{contrasenia_consumidor}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Consumidor buscarConsumidorCorreo(@PathVariable  String contrasenia_consumidor,@PathVariable String correo_consumidor) {
+		System.out.println(contrasenia_consumidor);
+		Consumidor consumidorActual= consumidorService.buscarConsumidorCorreo(correo_consumidor, contrasenia_consumidor);
+		
+		System.out.println("epale mija"+consumidorActual.getContrasenia_consumidor());
+		
+		
+		System.out.println("llego aqui"+ correo_consumidor);
+		
+		if(consumidorActual == null) {
+			System.out.println("en la buena perro");
+		}
+		
+		return consumidorService.buscarConsumidorCorreo(correo_consumidor,contrasenia_consumidor);
+		
+	}
+	
 	@DeleteMapping("/consumidores/{cedula_consumidor}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete (@PathVariable Long cedula_consumidor) {
 		consumidorService.delete(cedula_consumidor);
 	}
 	
-	@GetMapping("/consumidores/{username}")
-	public Consumidor getUsuario(@PathVariable String username) {
-		System.out.println("perro");
-		return consumidorDao.findByUsername(username);
-	}
 	
 	
 

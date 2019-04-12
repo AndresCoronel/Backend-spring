@@ -16,9 +16,9 @@ import com.bolsadeideas.spingboot.backend.apirest.models.entity.Productor;
 public class OfertaPojo {
 	
 	private Long id_oferta;
-	private String nombreproducto;
+	private String nombre_producto;
 	private String unidad_medida_producto;
-	private int cantidadproducto;
+	private int cantidad_producto;
 	private int precio_producto;
 	private String variedad_producto;
 	private String descripcion_producto;
@@ -62,12 +62,20 @@ public class OfertaPojo {
 		this.id_oferta = id_oferta;
 	}
 
-	public String getNombreproducto() {
-		return nombreproducto;
+	public String getNombre_producto() {
+		return nombre_producto;
 	}
 
-	public void setNombreproducto(String nombreproducto) {
-		this.nombreproducto = nombreproducto;
+	public void setNombre_producto(String nombre_producto) {
+		this.nombre_producto = nombre_producto;
+	}
+
+	public int getCantidad_producto() {
+		return cantidad_producto;
+	}
+
+	public void setCantidad_producto(int cantidad_producto) {
+		this.cantidad_producto = cantidad_producto;
 	}
 
 	public String getUnidad_medida_producto() {
@@ -76,13 +84,6 @@ public class OfertaPojo {
 
 	public void setUnidad_medida_producto(String unidad_medida_producto) {
 		this.unidad_medida_producto = unidad_medida_producto;
-	}
-	public int getCantidadproducto() {
-		return cantidadproducto;
-	}
-
-	public void setCantidadproducto(int cantidadproducto) {
-		this.cantidadproducto = cantidadproducto;
 	}
 
 	public int getPrecio_producto() {

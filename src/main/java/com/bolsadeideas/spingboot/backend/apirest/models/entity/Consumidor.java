@@ -5,11 +5,17 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "consumidor")
+@NamedQueries({
+@NamedQuery(name="Consumidor.buscarConsumidorCorreo", query="from Consumidor where correo_consumidor=? AND contrasenia_consumidor=?"),
+
+})
 public class Consumidor implements Serializable {
 
 	@Id

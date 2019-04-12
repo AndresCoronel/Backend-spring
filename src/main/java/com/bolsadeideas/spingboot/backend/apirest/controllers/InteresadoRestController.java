@@ -57,7 +57,7 @@ public class InteresadoRestController {
 	Consumidor consumidor = this.consumidorService.findByCedulaConsumidor((long) 1);
 	System.out.println("llego el consumidor:"+consumidor);
 	Oferta oferta = this.ofertaService.findByIdOferta(interesadoPojo.getOferta());
-	System.out.println(oferta.getNombreproducto());
+	System.out.println(oferta.getNombre_producto());
 	System.out.println(consumidor.getNombre_consumidor());
 	
 		interesado.setConsumidor(consumidor);

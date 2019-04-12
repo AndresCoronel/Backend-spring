@@ -13,6 +13,4 @@ public interface IDemandaService {
 	public Demanda save(Demanda demanda);	
 	public void delete(Long id_demanda);
 
-	/*Buscar por cantidad de producto*/
-	public List<Demanda> findByCantidadproducto(int cantidadproducto);
 }
