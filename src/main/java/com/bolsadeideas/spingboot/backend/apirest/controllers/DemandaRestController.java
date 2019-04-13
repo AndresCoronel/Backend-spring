@@ -24,93 +24,92 @@ import com.bolsadeideas.spingboot.backend.apirest.models.pojos.DemandaPojo;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IConsumidorService;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IDemandaService;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
 @RequestMapping("/api")
 public class DemandaRestController {
-	
+
 	@Autowired
 	private IDemandaService demandaService;
 	@Autowired
 	private IConsumidorService consumidorService;
-	
+
 	@GetMapping("/demandas")
-	public List<Demanda> index(){
+	public List<Demanda> index() {
 		return demandaService.findAll();
 	}
+
 	@GetMapping("/demandas/{id_demanda}")
 	public Demanda show(@PathVariable Long id_demanda) {
 		return demandaService.findByIdDemanda(id_demanda);
 	}
-	@PostMapping("/demandas")
+	
+	@GetMapping("/demandas/consumidor/{consumidor}")
+	public List<Demanda> mostrar(@PathVariable Consumidor consumidor) {
+		System.out.println("mira donde llego"+ consumidor.getCorreo_consumidor()	);
+		return demandaService.findByConsumidor(consumidor);
+
+	}
+	
+
+	@PostMapping("/demandas/post/{consumidor}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Demanda create(@RequestBody DemandaPojo demandaPojo) {
-	Demanda demanda = new Demanda();
-	System.out.println(demandaPojo.getCiudad_demanda());
-	
-	Consumidor consumidor = this.consumidorService.findByCedulaConsumidor(demandaPojo.getConsumidor());
-	System.out.println(consumidor.getNombre_consumidor());
-	
+	public Demanda create(@RequestBody DemandaPojo demandaPojo, Consumidor consumidor) {
+		
+		Demanda demanda = new Demanda();
+		Consumidor consumidor1 = this.consumidorService.findByCedulaConsumidor(consumidor.getCedula_consumidor());
+		
 		demanda.setCreate_at(new Date());
 		demanda.setNombre_producto(demandaPojo.getNombre_producto());
 		demanda.setCantidad_producto(demandaPojo.getCantidad_producto());
 		demanda.setMedida_producto(demandaPojo.getMedida_producto());
-		demanda.setDepartamento_demanda(demandaPojo.getDepartamento_demanda());
-		demanda.setCiudad_demanda(demandaPojo.getCiudad_demanda());
 		demanda.setDescripcion_demanda(demandaPojo.getDescripcion_demanda());
-		demanda.setEstado_demanda(demandaPojo.getEstado_demanda());
+		demanda.setEstado_demanda("PUBLICADA");
 		demanda.setVariedad_producto(demandaPojo.getVariedad_producto());
 		demanda.setDireccion_demanda(demandaPojo.getDireccion_demanda());
-		demanda.setConsumidor(consumidor);
-		
-		
-		
+		demanda.setConsumidor(consumidor1);
+
 		return demandaService.save(demanda);
-		
+
 	}
-	
+
 	@PutMapping("/demandas/{id_demanda}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Demanda update(@RequestBody Demanda demanda, @PathVariable Long id_demanda) {
-		Demanda demandaActual= demandaService.findByIdDemanda(id_demanda);
-		
+		Demanda demandaActual = demandaService.findByIdDemanda(id_demanda);
+
 		demandaActual.setNombre_producto(demanda.getNombre_producto());
 		demandaActual.setCantidad_producto(demanda.getCantidad_producto());
 		demandaActual.setMedida_producto(demanda.getMedida_producto());
-		demandaActual.setDepartamento_demanda(demanda.getDepartamento_demanda());
-		demandaActual.setCiudad_demanda(demanda.getCiudad_demanda());
 		demandaActual.setDescripcion_demanda(demanda.getDescripcion_demanda());
 
-		demandaActual.setEstado_demanda(demanda.getEstado_demanda());
+		demandaActual.setEstado_demanda("PUBLICADA");
 		demandaActual.setVariedad_producto(demanda.getVariedad_producto());
 		demandaActual.setDireccion_demanda(demanda.getDireccion_demanda());
-		
+
 		demandaActual.setConsumidor(demanda.getConsumidor());
-		
-		
+
 		return demandaService.save(demandaActual);
-		
+
 	}
-	
+
 	@DeleteMapping("/demandas/{id_demanda}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delete (@PathVariable Long id_demanda) {
+	public void delete(@PathVariable Long id_demanda) {
 		demandaService.delete(id_demanda);
 	}
-	
+
 	@GetMapping("/demandas/oferta/{oferta}")
-	public List<Demanda> mostrarOfertas(@PathVariable Oferta oferta){
+	public List<Demanda> mostrarOfertas(@PathVariable Oferta oferta) {
 		System.out.println("metodo********************");
-		if(oferta == null) {
+		if (oferta == null) {
 			System.out.println("pailas bebe");
-		}
-		else {
+		} else {
 			System.out.println(oferta.getCantidad_producto());
 		}
-		
+
 		return null;
-		
+
 	}
-	
 
 }

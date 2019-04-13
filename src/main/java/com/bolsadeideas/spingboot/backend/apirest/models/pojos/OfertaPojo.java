@@ -30,6 +30,7 @@ public class OfertaPojo {
 	private String fecha_recoleccion_oferta;
 	private String ciudad_oferta;
 	private String departamento_oferta;
+	private int ciudad;
 	private List<Foto> fotos ;
 	
 	@Column(name="create_at")
@@ -45,6 +46,14 @@ public class OfertaPojo {
 		super();
 	}
 	
+
+	public int getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(int ciudad) {
+		this.ciudad = ciudad;
+	}
 
 	public List<Foto> getFotos() {
 		return fotos;

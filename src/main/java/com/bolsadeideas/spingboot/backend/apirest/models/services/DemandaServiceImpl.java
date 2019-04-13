@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bolsadeideas.spingboot.backend.apirest.models.dao.IDemandaDao;
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Consumidor;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Demanda;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Oferta;
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Productor;
 
 @Service
 public class DemandaServiceImpl implements IDemandaService {
@@ -29,6 +31,15 @@ public class DemandaServiceImpl implements IDemandaService {
 		// TODO Auto-generated method stub
 		return demandaDao.findById(id_demanda).orElse(null);
 	}
+	
+	/*Buscar oferta por consumidor*/
+	@Override
+	@Transactional(readOnly=true)
+	public List<Demanda> findByConsumidor(Consumidor consumidor) { 
+		return demandaDao.findByConsumidor(consumidor); 
+	}
+	
+	
 	@Override
 	@Transactional
 	public Demanda save(Demanda demanda) {

@@ -28,6 +28,7 @@ public class DemandaPojo {
 	private String estado_demanda;
 	private String variedad_producto;
 	private String direccion_demanda;
+	private int ciudad;
 	
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)
@@ -86,7 +87,17 @@ public class DemandaPojo {
 		this.descripcion_demanda = descripcion_demanda;
 	}
 	
+	public int getCiudad() {
+		return ciudad;
+	}
 
+	public void setCiudad(int ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public void setCantidad_producto(int cantidad_producto) {
+		this.cantidad_producto = cantidad_producto;
+	}
 
 	public String getEstado_demanda() {
 		return estado_demanda;

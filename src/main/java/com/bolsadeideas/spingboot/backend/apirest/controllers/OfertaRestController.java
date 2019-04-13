@@ -105,12 +105,8 @@ public class OfertaRestController {
 		oferta.setPrecio_producto(ofertaPojo.getPrecio_producto());
 		oferta.setVariedad_producto(ofertaPojo.getVariedad_producto());
 		oferta.setDescripcion_producto(ofertaPojo.getDescripcion_producto());
-		oferta.setLatitud_oferta(ofertaPojo.getLatitud_oferta());
-		oferta.setLongitud_oferta(ofertaPojo.getLongitud_oferta());
 		oferta.setFecha_recoleccion_oferta(ofertaPojo.getFecha_recoleccion_oferta());
 		oferta.setLugar_oferta(ofertaPojo.getLugar_oferta());
-		oferta.setCiudad_oferta(ofertaPojo.getCiudad_oferta());
-		oferta.setDepartamento_oferta(ofertaPojo.getDepartamento_oferta());
 		oferta.setEstado_oferta("PUBLICADA");
 		oferta.setProductor(productor);
 
@@ -127,13 +123,9 @@ public class OfertaRestController {
 		ofertaActual.setPrecio_producto(oferta.getPrecio_producto());
 		ofertaActual.setVariedad_producto(oferta.getVariedad_producto());
 		ofertaActual.setDescripcion_producto(oferta.getVariedad_producto());
-		ofertaActual.setLatitud_oferta(oferta.getLatitud_oferta());
-		ofertaActual.setLongitud_oferta(oferta.getLongitud_oferta());
 		ofertaActual.setLugar_oferta(oferta.getLugar_oferta());
 		ofertaActual.setEstado_oferta(oferta.getEstado_oferta());
 		ofertaActual.setFecha_recoleccion_oferta(oferta.getFecha_recoleccion_oferta());
-		ofertaActual.setCiudad_oferta(oferta.getCiudad_oferta());
-		ofertaActual.setDepartamento_oferta(oferta.getDepartamento_oferta());
 		ofertaActual.setProductor(oferta.getProductor());
 		
 		

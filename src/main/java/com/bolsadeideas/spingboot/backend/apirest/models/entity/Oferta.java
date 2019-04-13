@@ -20,19 +20,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name= "oferta")
+@Table(name = "oferta")
 @NamedQueries({
-@NamedQuery(name="Oferta.buscarIguales", query="from Oferta where nombre_producto=? And cantidad_producto=? AND unidad_medida_producto=?"),
-@NamedQuery(name="Oferta.buscarMenores", query="from Oferta where nombre_producto=? And cantidad_producto<? AND unidad_medida_producto=?")
+		@NamedQuery(name = "Oferta.buscarIguales", query = "from Oferta where nombre_producto=? And cantidad_producto=? AND unidad_medida_producto=?"),
+		@NamedQuery(name = "Oferta.buscarMenores", query = "from Oferta where nombre_producto=? And cantidad_producto<? AND unidad_medida_producto=?")
 
 })
 public class Oferta implements Serializable {
 
-
 	@Id
-	@GeneratedValue( strategy= GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_oferta;
-	
+
 	@Column
 	private String nombre_producto;
 	private String unidad_medida_producto;
@@ -40,30 +39,26 @@ public class Oferta implements Serializable {
 	private int precio_producto;
 	private String variedad_producto;
 	private String descripcion_producto;
-	private Double latitud_oferta;
-	private Double longitud_oferta;
 	private String lugar_oferta;
 	private String estado_oferta;
 	private String fecha_recoleccion_oferta;
 
-	private String ciudad_oferta;
-	private String departamento_oferta;
-	
 	@ManyToOne
-	@JoinColumn(name="cedula_productor")
+	@JoinColumn(name = "cedula_productor")
 	private Productor productor;
-	
-	
-	@Column(name="create_at")
+	@ManyToOne
+	@JoinColumn(name="id_ciudad")
+	private Ciudad ciudad;
+
+	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
 	private Date create_at;
-	
+
 	@PrePersist
 	public void prePersist() {
 		create_at = new Date();
 	}
-	
-	
+
 	public Long getId_oferta() {
 		return id_oferta;
 	}
@@ -71,49 +66,22 @@ public class Oferta implements Serializable {
 	public void setId_oferta(Long id_oferta) {
 		this.id_oferta = id_oferta;
 	}
-	
-
-	public String getCiudad_oferta() {
-		return ciudad_oferta;
-	}
-
-
-	public void setCiudad_oferta(String ciudad_oferta) {
-		this.ciudad_oferta = ciudad_oferta;
-	}
-
-
-	public String getDepartamento_oferta() {
-		return departamento_oferta;
-	}
-
-
-	public void setDepartamento_oferta(String departamento_oferta) {
-		this.departamento_oferta = departamento_oferta;
-	}
-
-
-
 
 	public String getNombre_producto() {
 		return nombre_producto;
 	}
 
-
 	public void setNombre_producto(String nombre_producto) {
 		this.nombre_producto = nombre_producto;
 	}
-
 
 	public int getCantidad_producto() {
 		return cantidad_producto;
 	}
 
-
 	public void setCantidad_producto(int cantidad_producto) {
 		this.cantidad_producto = cantidad_producto;
 	}
-
 
 	public int getPrecio_producto() {
 		return precio_producto;
@@ -171,22 +139,6 @@ public class Oferta implements Serializable {
 		this.fecha_recoleccion_oferta = fecha_recoleccion_oferta;
 	}
 
-	public Double getLatitud_oferta() {
-		return latitud_oferta;
-	}
-
-	public void setLatitud_oferta(Double latitud_oferta) {
-		this.latitud_oferta = latitud_oferta;
-	}
-
-	public Double getLongitud_oferta() {
-		return longitud_oferta;
-	}
-
-	public void setLongitud_oferta(Double longitud_oferta) {
-		this.longitud_oferta = longitud_oferta;
-	}
-
 	public Productor getProductor() {
 		return productor;
 	}
@@ -195,23 +147,25 @@ public class Oferta implements Serializable {
 		this.productor = productor;
 	}
 
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
+	}
 
 	public Date getCreate_at() {
 		return create_at;
 	}
 
-
 	public void setCreate_at(Date create_at) {
 		this.create_at = create_at;
 	}
-
-
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
 
 }

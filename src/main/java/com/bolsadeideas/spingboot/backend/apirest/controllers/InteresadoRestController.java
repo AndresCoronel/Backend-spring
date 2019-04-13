@@ -49,16 +49,24 @@ public class InteresadoRestController {
 	public Interesado show(@PathVariable Long id_interesado) {
 		return interesadoService.findByIdInteresado(id_interesado);
 	}
-	@PostMapping("/interesados")
+	
+	@GetMapping("/interesados/consumidor/{consumidor}")
+	public List<Interesado> mostrarOfertasInteres(@PathVariable Consumidor consumidor) {
+		System.out.println("entro");
+		System.out.println("mira donde llego el interesado"+ consumidor.getCorreo_consumidor()	);
+		return interesadoService.findByConsumidor(consumidor);
+
+	}
+	
+	@PostMapping("/interesados/post/{consumidor}/{oferta}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Interesado create(@RequestBody InteresadoPojo interesadoPojo) {
+	public Interesado create(@RequestBody InteresadoPojo interesadoPojo, Consumidor consumidorV, Oferta ofertaV) {
 	Interesado interesado = new Interesado();
 	
-	Consumidor consumidor = this.consumidorService.findByCedulaConsumidor((long) 1);
-	System.out.println("llego el consumidor:"+consumidor);
-	Oferta oferta = this.ofertaService.findByIdOferta(interesadoPojo.getOferta());
-	System.out.println(oferta.getNombre_producto());
-	System.out.println(consumidor.getNombre_consumidor());
+	Consumidor consumidor = this.consumidorService.findByCedulaConsumidor(consumidorV.getCedula_consumidor());
+	System.out.println("llego el consumidor: "+consumidor);
+	Oferta oferta = this.ofertaService.findByIdOferta(ofertaV.getId_oferta());
+	System.out.println("Llego la oferta: "+oferta.getNombre_producto());
 	
 		interesado.setConsumidor(consumidor);
 		interesado.setOferta(oferta);

@@ -27,6 +27,7 @@ import com.bolsadeideas.spingboot.backend.apirest.models.services.IConsumidorSer
 @RequestMapping("/api")
 public class ConsumidorRestController {
 	
+	
 	@Autowired
 	private IConsumidorService consumidorService;
 	@Autowired
@@ -62,7 +63,7 @@ public class ConsumidorRestController {
 		
 	}
 	
-	@GetMapping("/consumidores/buscar/{correo_consumidor}/{contrasenia_consumidor}")
+	@PostMapping("/consumidores/buscar/{correo_consumidor}/{contrasenia_consumidor}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Consumidor buscarConsumidorCorreo(@PathVariable  String contrasenia_consumidor,@PathVariable String correo_consumidor) {
 		System.out.println(contrasenia_consumidor);

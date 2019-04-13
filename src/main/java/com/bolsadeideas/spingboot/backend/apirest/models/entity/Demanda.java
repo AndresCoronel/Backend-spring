@@ -26,8 +26,6 @@ public class Demanda implements Serializable {
 	private String nombre_producto;
 	private int cantidad_producto;
 	private String medida_producto;
-	private String departamento_demanda;
-	private String ciudad_demanda;
 	private String descripcion_demanda;
 	private String estado_demanda;
 	private String variedad_producto;
@@ -37,6 +35,10 @@ public class Demanda implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="cedula_consumidor")
 	private Consumidor consumidor;
+
+	@ManyToOne
+	@JoinColumn(name="id_ciudad")
+	private Ciudad ciudad;
 
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)
@@ -108,32 +110,6 @@ public class Demanda implements Serializable {
 		this.medida_producto = medida_producto;
 	}
 
-
-
-	public String getDepartamento_demanda() {
-		return departamento_demanda;
-	}
-
-
-
-	public void setDepartamento_demanda(String departamento_demanda) {
-		this.departamento_demanda = departamento_demanda;
-	}
-
-
-
-	public String getCiudad_demanda() {
-		return ciudad_demanda;
-	}
-
-
-
-	public void setCiudad_demanda(String ciudad_demanda) {
-		this.ciudad_demanda = ciudad_demanda;
-	}
-
-
-
 	public String getDescripcion_demanda() {
 		return descripcion_demanda;
 	}
@@ -150,11 +126,19 @@ public class Demanda implements Serializable {
 		return consumidor;
 	}
 
-
-
 	public void setConsumidor(Consumidor consumidor) {
 		this.consumidor = consumidor;
 	}
+
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	
 
 
 
