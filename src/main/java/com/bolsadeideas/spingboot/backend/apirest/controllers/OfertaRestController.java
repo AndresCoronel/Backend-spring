@@ -35,11 +35,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 import org.hibernate.*;
 
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Ciudad;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Demanda;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Foto;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Oferta;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Productor;
 import com.bolsadeideas.spingboot.backend.apirest.models.pojos.OfertaPojo;
+import com.bolsadeideas.spingboot.backend.apirest.models.services.ICiudadService;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IOfertaService;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IProductorService;
 
@@ -54,6 +56,8 @@ public class OfertaRestController {
 	private IOfertaService ofertaService;
 	@Autowired
 	private IProductorService productorService;
+	@Autowired
+	private ICiudadService ciudadService;
 
 	@GetMapping("/ofertas")
 	public List<Oferta> index() {
@@ -97,7 +101,8 @@ public class OfertaRestController {
 
 		Oferta oferta = new Oferta();
 		Productor productor = this.productorService.findByCedulaProductor(ofertaPojo.getProductor());
-
+		Ciudad ciudad = this.ciudadService.findByIdCiudad(ofertaPojo.getCiudad());
+		
 		oferta.setCreate_at(new Date());
 		oferta.setNombre_producto(ofertaPojo.getNombre_producto());
 		oferta.setUnidad_medida_producto(ofertaPojo.getUnidad_medida_producto());
@@ -109,6 +114,7 @@ public class OfertaRestController {
 		oferta.setLugar_oferta(ofertaPojo.getLugar_oferta());
 		oferta.setEstado_oferta("PUBLICADA");
 		oferta.setProductor(productor);
+		oferta.setCiudad(ciudad);
 
 		return ofertaService.save(oferta);
 	}

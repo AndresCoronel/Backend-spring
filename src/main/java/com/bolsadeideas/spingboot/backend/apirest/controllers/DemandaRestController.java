@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Ciudad;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Consumidor;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Demanda;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Oferta;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Productor;
 import com.bolsadeideas.spingboot.backend.apirest.models.pojos.DemandaPojo;
+import com.bolsadeideas.spingboot.backend.apirest.models.services.ICiudadService;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IConsumidorService;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IDemandaService;
 
@@ -33,6 +35,8 @@ public class DemandaRestController {
 	private IDemandaService demandaService;
 	@Autowired
 	private IConsumidorService consumidorService;
+	@Autowired 
+	private ICiudadService ciudadService;
 
 	@GetMapping("/demandas")
 	public List<Demanda> index() {
@@ -52,12 +56,13 @@ public class DemandaRestController {
 	}
 	
 
-	@PostMapping("/demandas/post/{consumidor}")
+	@PostMapping("/demandas")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Demanda create(@RequestBody DemandaPojo demandaPojo, Consumidor consumidor) {
+	public Demanda create(@RequestBody DemandaPojo demandaPojo) {
 		
 		Demanda demanda = new Demanda();
-		Consumidor consumidor1 = this.consumidorService.findByCedulaConsumidor(consumidor.getCedula_consumidor());
+		Consumidor consumidor = this.consumidorService.findByCedulaConsumidor(demandaPojo.getConsumidor());
+		Ciudad ciudad = this.ciudadService.findByIdCiudad(demandaPojo.getCiudad());
 		
 		demanda.setCreate_at(new Date());
 		demanda.setNombre_producto(demandaPojo.getNombre_producto());
@@ -67,7 +72,8 @@ public class DemandaRestController {
 		demanda.setEstado_demanda("PUBLICADA");
 		demanda.setVariedad_producto(demandaPojo.getVariedad_producto());
 		demanda.setDireccion_demanda(demandaPojo.getDireccion_demanda());
-		demanda.setConsumidor(consumidor1);
+		demanda.setConsumidor(consumidor);
+		demanda.setCiudad(ciudad);
 
 		return demandaService.save(demanda);
 

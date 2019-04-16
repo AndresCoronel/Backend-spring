@@ -66,17 +66,6 @@ public class ConsumidorRestController {
 	@PostMapping("/consumidores/buscar/{correo_consumidor}/{contrasenia_consumidor}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Consumidor buscarConsumidorCorreo(@PathVariable  String contrasenia_consumidor,@PathVariable String correo_consumidor) {
-		System.out.println(contrasenia_consumidor);
-		Consumidor consumidorActual= consumidorService.buscarConsumidorCorreo(correo_consumidor, contrasenia_consumidor);
-		
-		System.out.println("epale mija"+consumidorActual.getContrasenia_consumidor());
-		
-		
-		System.out.println("llego aqui"+ correo_consumidor);
-		
-		if(consumidorActual == null) {
-			System.out.println("en la buena perro");
-		}
 		
 		return consumidorService.buscarConsumidorCorreo(correo_consumidor,contrasenia_consumidor);
 		

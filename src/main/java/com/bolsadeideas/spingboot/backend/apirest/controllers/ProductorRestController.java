@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Consumidor;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Productor;
 import com.bolsadeideas.spingboot.backend.apirest.models.services.IProductorService;
 
@@ -42,6 +43,14 @@ public class ProductorRestController {
 		return productorService.save(productor);
 	}
 
+	@PostMapping("/productores/buscar/{correo_productor}/{contrasenia_productor}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Productor buscarProductorCorreo(@PathVariable  String contrasenia_productor,@PathVariable String correo_productor) {
+		
+		return productorService.buscarProductorCorreo(correo_productor,contrasenia_productor);
+		
+	}
+	
 	@PutMapping("/productores/{cedula_productor}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Productor update(@RequestBody Productor productor, @PathVariable Long cedula_productor) {

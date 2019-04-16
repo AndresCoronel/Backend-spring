@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bolsadeideas.spingboot.backend.apirest.models.dao.IProductorDao;
+import com.bolsadeideas.spingboot.backend.apirest.models.entity.Consumidor;
 import com.bolsadeideas.spingboot.backend.apirest.models.entity.Productor;
 
 @Service
@@ -26,6 +27,15 @@ public class ProductorServiceImpl implements IProductorService  {
 		// TODO Auto-generated method stub
 		return productorDao.findById(cedula_productor).orElse(null);
 	}
+	@Override
+	@Transactional(readOnly=true)
+	public Productor buscarProductorCorreo(String correo_productor, String contrasenia_productor) {
+		// TODO Auto-generated method stub
+		System.out.println("llego aqiii a buscar productor correo");
+		Productor productor = productorDao.buscarProductorCorreo(correo_productor, contrasenia_productor);
+		return productor;
+	}
+	
 	@Override
 	@Transactional
 	public Productor save(Productor productor) {
